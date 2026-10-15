@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0b0b0f">
+  <meta name="description" content="ATOM — тёмное пространство для творчества и искусства.">
+  <title>ATOM — пространство творчества</title>
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+  <header class="topbar">
+    <a class="brand" href="#" data-page="home" aria-label="ATOM — главная">
+      <span class="brand-mark">A<span>·</span></span><span class="brand-name">ATOM</span>
+    </a>
+    <button class="menu-toggle" id="menuToggle" aria-label="Открыть меню" aria-expanded="false">☰</button>
+    <nav class="nav" id="nav">
+      <button class="nav-link active" data-page="home">Главная</button>
+      <button class="nav-link" data-page="explore">Работы</button>
+      <button class="nav-link" data-page="upload">Опубликовать</button>
+      <button class="nav-link" data-page="about">О проекте</button>
+    </nav>
+    <div class="top-actions">
+      <button class="button button-ghost" id="loginBtn">Войти</button>
+      <button class="button button-red" id="signupBtn">Создать аккаунт <span>↗</span></button>
+      <button class="avatar hidden" id="userAvatar" title="Профиль"></button>
+    </div>
+  </header>
+
+  <main>
+    <section class="page active" id="page-home">
+      <div class="hero wrap">
+        <div class="hero-copy">
+          <div class="eyebrow"><span class="pulse"></span> ТВОРЧЕСТВО БЕЗ РАМOК</div>
+          <h1>Твоя идея.<br>Твой <span class="red-text">след.</span></h1>
+          <p class="hero-lead">ATOM — место, где цифровое искусство встречается с людьми, которые его чувствуют. Загружай работы, находи вдохновение и показывай свой стиль.</p>
+          <div class="hero-actions">
+            <button class="button button-red button-large" data-goto="upload">Опубликовать работу <span>↗</span></button>
+            <button class="button button-ghost button-large" data-goto="explore">Исследовать галерею</button>
+          </div>
+          <div class="hero-stats">
+            <div><strong id="statWorks">06</strong><span>работ в галерее</span></div>
+            <div><strong>∞</strong><span>идей впереди</span></div>
+            <div><strong>01</strong><span>твоя площадка</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Абстрактная красно-чёрная композиция">
+          <div class="art-grid"></div><div class="art-ring ring-one"></div><div class="art-ring ring-two"></div>
+          <div class="art-slash"></div><div class="art-core">A<span>O</span>TM</div>
+          <div class="art-caption"><span>FIG. 001</span><span>CREATE YOUR OWN REALITY</span></div>
+          <div class="floating-tag tag-top">NO LIMITS / 2026</div><div class="floating-tag tag-bottom">MADE TO BE SEEN</div>
+        </div>
+      </div>
+      <section class="wrap featured-section">
+        <div class="section-heading"><div><span class="eyebrow">ВЫБОР СООБЩЕСТВА</span><h2>Свежие <span class="red-text">работы</span></h2></div><button class="text-link" data-goto="explore">Вся галерея <span>↗</span></button></div>
+        <div class="art-grid-cards" id="featuredWorks"></div>
+      </section>
+      <section class="join-strip wrap"><div><span class="eyebrow">ТВОЯ ОЧЕРЕДЬ</span><h2>Не просто смотри.<br><span class="red-text">Создавай.</span></h2></div><button class="button button-red button-large" data-goto="upload">Добавить свою работу <span>↗</span></button></section>
+    </section>
+
+    <section class="page wrap" id="page-explore">
+      <div class="page-intro"><span class="eyebrow">ГАЛЕРЕЯ ATOM</span><h1>Искусство <span class="red-text">в движении.</span></h1><p>Работы участников и визуальные эксперименты. Найди то, что цепляет.</p></div>
+      <div class="gallery-toolbar"><label class="searchbox"><span>⌕</span><input id="searchInput" type="search" placeholder="Поиск по названию или автору..."></label><div class="filters" id="filters"><button class="filter active" data-filter="Все">Все работы</button><button class="filter" data-filter="Иллюстрация">Иллюстрация</button><button class="filter" data-filter="Дизайн">Дизайн</button><button class="filter" data-filter="Фото">Фото</button><button class="filter" data-filter="3D">3D</button></div></div>
+      <div class="art-grid-cards gallery-cards" id="allWorks"></div>
+      <div class="empty-state hidden" id="emptyState"><span>◌</span><h3>Пока ничего не найдено</h3><p>Попробуй другой запрос или фильтр.</p></div>
+    </section>
+
+    <section class="page wrap" id="page-upload">
+      <div class="page-intro"><span class="eyebrow">ТВОЯ ВЫСТАВКА НАЧИНАЕТСЯ ЗДЕСЬ</span><h1>Покажи, что <span class="red-text">создал.</span></h1><p>Загрузи изображение, добавь детали и выпусти работу в галерею.</p></div>
+      <div class="upload-layout">
+        <form class="panel upload-form" id="uploadForm">
+          <label class="field-label">Название работы <input id="workTitle" maxlength="70" required placeholder="Например, Красный импульс"></label>
+          <label class="field-label">Категория <select id="workCategory"><option>Иллюстрация</option><option>Дизайн</option><option>Фото</option><option>3D</option><option>Другое</option></select></label>
+          <label class="field-label">Описание <textarea id="workDescription" maxlength="400" rows="4" placeholder="Расскажи немного о своей идее..."></textarea></label>
+          <label class="field-label">Автор <input id="workAuthor" maxlength="40" placeholder="Твоё имя или ник"></label>
+          <label class="field-label">Изображение <span class="muted">(JPG, PNG, WEBP, до 5 МБ)</span><input id="workImage" type="file" accept="image/png,image/jpeg,image/webp" required></label>
+          <button class="button button-red button-large full-width" type="submit">Опубликовать работу <span>↗</span></button>
+          <p class="form-note">В этой демоверсии публикации сохраняются в памяти браузера на этом устройстве.</p>
+        </form>
+        <div class="preview-panel"><div class="preview-label">ПРЕДПРОСМОТР <span>LIVE</span></div><div class="upload-preview" id="uploadPreview"><div class="preview-placeholder"><span>＋</span><strong>Твоя работа появится здесь</strong><small>Выбери изображение слева</small></div></div><div class="preview-bottom"><span>AO / STUDIO</span><span>PREVIEW MODE</span></div></div>
+      </div>
+    </section>
+
+    <section class="page wrap" id="page-about">
+      <div class="page-intro"><span class="eyebrow">О НАС</span><h1>Пространство для <span class="red-text">смелых идей.</span></h1><p>ATOM — концепция творческой площадки с фокусом на визуальное искусство, самовыражение и обмен вдохновением.</p></div>
+      <div class="about-grid"><article class="about-card"><span class="number">01</span><h3>Публикуй</h3><p>Загружай свои изображения и рассказывай историю, которая за ними стоит.</p></article><article class="about-card"><span class="number">02</span><h3>Исследуй</h3><p>Открывай новые стили, категории и визуальные идеи других авторов.</p></article><article class="about-card"><span class="number">03</span><h3>Развивайся</h3><p>Собирай портфолио и находи свой визуальный язык шаг за шагом.</p></article></div>
+      <div class="notice"><strong>Важно про аккаунты</strong><p>Регистрация здесь демонстрационная: данные хранятся только в локальном браузере. Для настоящих аккаунтов, безопасного хранения паролей и общей галереи между разными пользователями нужен сервер или сервис авторизации.</p></div>
+    </section>
+  </main>
+
+  <footer class="footer"><a class="brand" href="#" data-page="home"><span class="brand-mark">A<span>·</span></span><span class="brand-name">ATOM</span></a><span>ТВОИ ИДЕИ. ТВОИ ПРАВИЛА.</span><span>© 2026 ATOM</span></footer>
+
+  <div class="modal-backdrop hidden" id="authModal" role="dialog" aria-modal="true" aria-labelledby="authTitle">
+    <div class="modal panel"><button class="modal-close" id="closeModal" aria-label="Закрыть">×</button><div class="modal-mark">A<span>·</span></div><span class="eyebrow">ДОБРО ПОЖАЛОВАТЬ В ATOM</span><h2 id="authTitle">Создай свой <span class="red-text">профиль.</span></h2><div class="auth-tabs"><button class="auth-tab active" data-auth="signup">Регистрация</button><button class="auth-tab" data-auth="login">Войти</button></div>
+      <form id="authForm"><label class="field-label" id="nameField">Никнейм<input id="authName" maxlength="30" placeholder="Как тебя зовут?" required></label><label class="field-label">Электронная почта<input id="authEmail" type="email" required placeholder="you@example.com" autocomplete="email"></label><label class="field-label">Пароль<input id="authPassword" type="password" minlength="6" required placeholder="Минимум 6 символов" autocomplete="new-password"></label><p class="auth-error" id="authError" role="status"></p><button class="button button-red button-large full-width" id="authSubmit" type="submit">Создать аккаунт <span>↗</span></button></form><p class="form-note">Демо-режим. Не используй настоящий пароль: это не защищённая система авторизации.</p>
+    </div>
+  </div>
+  <div class="toast" id="toast" role="status"></div>
+  <script src="script.js"></script>
+</body>
+</html>
