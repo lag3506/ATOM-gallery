@@ -1,0 +1,187 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ATOM — мир творчества</title>
+    <link rel="icon" href="icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+    <a class="logo" href="#home"><span>▲</span> ATOM</a>
+
+    <nav>
+        <a href="#home">Главная</a>
+        <a href="#gallery">Галерея</a>
+        <a href="#upload">Опубликовать</a>
+    </nav>
+
+    <button id="authButton" class="button" onclick="openAuth()">
+        Войти
+    </button>
+</header>
+
+<main>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <p class="eyebrow">ТВОЁ ТВОРЧЕСТВО. ТВОИ ПРАВИЛА.</p>
+            <h1>Создавай.<br><span>Показывай.</span><br>Вдохновляй.</h1>
+            <p class="hero-text">
+                ATOM — место, где художники делятся своими работами,
+                находят вдохновение и открывают новые таланты.
+            </p>
+            <a href="#gallery" class="button">Смотреть работы ↗</a>
+        </div>
+
+        <div class="hero-art">
+            <div class="art-circle"></div>
+            <div class="art-card">
+                <span class="art-symbol">A</span>
+                <p>CREATE YOUR WORLD</p>
+                <small>ATOM / ART COMMUNITY</small>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="gallery">
+        <div class="section-heading">
+            <div>
+                <p class="eyebrow">СООБЩЕСТВО ATOM</p>
+                <h2>Галерея <span>работ</span></h2>
+            </div>
+
+            <input
+                type="search"
+                id="searchInput"
+                placeholder="Найти работу..."
+                aria-label="Поиск работ"
+            >
+        </div>
+
+        <div class="filters">
+            <button class="filter active" data-filter="all">Все работы</button>
+            <button class="filter" data-filter="digital">Цифровое искусство</button>
+            <button class="filter" data-filter="drawing">Рисунки</button>
+            <button class="filter" data-filter="other">Другое</button>
+        </div>
+
+        <div class="gallery" id="galleryGrid">
+            <article class="work-card" data-category="digital">
+                <img
+                    src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=900&q=80"
+                    alt="Абстрактная картина"
+                >
+                <div class="work-info">
+                    <div>
+                        <h3>Красный импульс</h3>
+                        <p>Автор: ATOM Studio</p>
+                    </div>
+                    <button class="like-button" aria-label="Лайк">♡ <span>12</span></button>
+                </div>
+            </article>
+
+            <article class="work-card" data-category="drawing">
+                <img
+                    src="https://images.unsplash.com/photo-1513364776144-60967b0f800f?auto=format&fit=crop&w=900&q=80"
+                    alt="Художественный рисунок"
+                >
+                <div class="work-info">
+                    <div>
+                        <h3>Цветной хаос</h3>
+                        <p>Автор: Art Soul</p>
+                    </div>
+                    <button class="like-button" aria-label="Лайк">♡ <span>8</span></button>
+                </div>
+            </article>
+
+            <article class="work-card" data-category="other">
+                <img
+                    src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80"
+                    alt="Современная архитектура"
+                >
+                <div class="work-info">
+                    <div>
+                        <h3>Геометрия города</h3>
+                        <p>Автор: PixelFox</p>
+                    </div>
+                    <button class="like-button" aria-label="Лайк">♡ <span>21</span></button>
+                </div>
+            </article>
+        </div>
+
+        <p id="emptyMessage" class="empty-message" hidden>
+            Работы не найдены.
+        </p>
+    </section>
+
+    <section class="section upload-section" id="upload">
+        <div>
+            <p class="eyebrow">ТВОЯ ОЧЕРЕДЬ</p>
+            <h2>Покажи миру<br><span>свою работу.</span></h2>
+            <p class="hero-text">
+                Загрузи картинку, придумай название и добавь её в галерею.
+            </p>
+        </div>
+
+        <form id="uploadForm" class="upload-form">
+            <label for="workTitle">Название работы</label>
+            <input id="workTitle" type="text" maxlength="60"
+                   placeholder="Например, Красная звезда" required>
+
+            <label for="workAuthor">Имя автора</label>
+            <input id="workAuthor" type="text" maxlength="40"
+                   placeholder="Твой никнейм" required>
+
+            <label for="workCategory">Категория</label>
+            <select id="workCategory">
+                <option value="digital">Цифровое искусство</option>
+                <option value="drawing">Рисунки</option>
+                <option value="other">Другое</option>
+            </select>
+
+            <label for="workImage">Изображение</label>
+            <input id="workImage" type="file" accept="image/*" required>
+
+            <button class="button" type="submit">Опубликовать работу ↗</button>
+            <p class="form-note">Изображение появится в галерее этого браузера.</p>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <a class="logo" href="#home"><span>▲</span> ATOM</a>
+    <p>Создано для тех, кому есть что показать.</p>
+    <p>© 2026 ATOM</p>
+</footer>
+
+<div class="modal" id="authModal" hidden>
+    <form class="auth-box" id="authForm">
+        <button type="button" class="close-button" onclick="closeAuth()">✕</button>
+        <p class="eyebrow">СООБЩЕСТВО ATOM</p>
+        <h2 id="authTitle">Вход</h2>
+
+        <label for="username">Имя пользователя</label>
+        <input id="username" type="text" maxlength="30"
+               placeholder="Твой никнейм" required>
+
+        <label for="password">Пароль</label>
+        <input id="password" type="password" minlength="4"
+               placeholder="Минимум 4 символа" required>
+
+        <button class="button" type="submit" id="authSubmit">Войти</button>
+
+        <p id="authMessage" class="form-note"></p>
+
+        <button type="button" class="switch-auth" id="switchAuth">
+            Нет аккаунта? Зарегистрироваться
+        </button>
+    </form>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
